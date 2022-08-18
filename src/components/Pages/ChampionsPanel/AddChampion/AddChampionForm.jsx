@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import useInput from '../../../../hooks/use-input'
 
 import './AddChampionForm.css'
+import BuildList from './BuildList';
+import Button from '../../../Ui/Button';
 
-export default function AddChampionForm() {
+export default function AddChampionForm(props) {
 
       const [builds, setBuilds] = useState([]);
 
@@ -22,7 +24,9 @@ export default function AddChampionForm() {
       const handleSubmit = (e) => {
             e.preventDefault()
 
+            console.log('close')
             resetNameInput()
+            props.close()
       }
 
       const toBase64 = file => new Promise((resolve, reject) => {
@@ -33,7 +37,7 @@ export default function AddChampionForm() {
       });
 
       return (
-            <form action="">
+            <form action="" onSubmit={handleSubmit}>
                   <div className={nameInputClasses}>
                         <label htmlFor='name'>Champions Name</label>
                         <input
@@ -51,6 +55,11 @@ export default function AddChampionForm() {
                               type='file'
                         />
                   </div>
+                  <BuildList builds={builds}></BuildList>
+                  <div className='buttons'>
+                        <button type="button">Add build</button>
+                  </div>
+                  <button className='button' disabled={!enteredNameIsValid}>Submit</button>
             </form>
       )
 }

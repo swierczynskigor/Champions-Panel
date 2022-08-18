@@ -1,13 +1,24 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment, useState } from 'react'
+import Button from '../../Ui/Button'
+import AddItem from './AddItem/AddItem';
 
 import classes from './ItemsPanel.module.css'
 
 export default function ItemsPanel() {
+      const [showAddItem, setShowAddItem] = useState(false);
+
+      const handleShowAddItem = () => setShowAddItem(true)
+      const handleHideAddItem = () => setShowAddItem(false)
+
       return (
-            <div className={classes.main}>
-                  <button className={classes.button}><Link to='/champions'>Champions</Link></button>
-                  <button className={classes.button}><Link to='/items'>Items</Link></button>
-            </div>
+            <Fragment>
+                  {showAddItem && <AddItem handleHideWindow={handleHideAddItem} />}
+                  <div className={classes.main}>
+                        <nav>
+                              <Button styles={2} func={handleShowAddItem} >Add Item</Button>
+                        </nav>
+                        <div className={classes.items}></div>
+                  </div>
+            </Fragment>
       )
 }

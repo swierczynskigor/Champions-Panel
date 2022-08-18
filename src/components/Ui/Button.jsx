@@ -11,7 +11,8 @@ const Button = (props) => {
       else style = styles.button3
 
       const handleOnClick = () => {
-            props.func()
+            if (props.func())
+                  props.func()
       }
 
       if (props.to === undefined)

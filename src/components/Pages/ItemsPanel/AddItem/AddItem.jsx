@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react'
 
-import classes from './AddChampion.module.css'
-import AddChampionForm from './AddChampionForm'
+import classes from './AddItem.module.css'
+import AddItemForm from './AddItemForm'
 
-export default function AddChampion(props) {
+export default function AddItem(props) {
       const goBack = '<'
 
       return (
@@ -12,7 +12,7 @@ export default function AddChampion(props) {
                         <div className={classes.bg} onClick={props.handleHideWindow}></div>
                         <div className={classes.container}>
                               <div className={classes.goBack} onClick={props.handleHideWindow}>{goBack}</div>
-                              <AddChampionForm close={props.handleHideWindow} />
+                              <AddItemForm close={props.handleHideWindow} />
                         </div>
                   </div>
             </Fragment>
