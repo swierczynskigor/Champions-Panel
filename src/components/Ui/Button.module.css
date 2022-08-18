@@ -1,0 +1,83 @@
+.container * {
+    text-decoration: none;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button1 {
+    margin: 5px 0;
+    width: fit-content;
+    padding: 12px 24px;
+    border: 2px solid #0098af;
+    background-color: #0098af;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 20px;
+}
+
+.button2 {
+    margin: 10px;
+    width: 200px;
+    height: 50px;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    font-size: 1.5em;
+    background: none;
+    transition: all .4s ease-in-out;
+}
+
+.button2:before {
+    content: '';
+    background: linear-gradient(45deg, #0f52ce, #7de1ff, #0f52ce);
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(8px);
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+    animation: glowing 10s linear infinite;
+    opacity: 0;
+    transition: opacity .4s ease-in-out;
+    border-radius: 10px;
+}
+
+.button2:hover {
+    background-color: aliceblue;
+}
+
+.butto2:active:after {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.button2:hover:before {
+    opacity: 1;
+}
+
+.button3 {
+    color: #0098af;
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
