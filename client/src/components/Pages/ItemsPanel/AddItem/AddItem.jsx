@@ -1,10 +1,15 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
+import { makeSureDBexists } from '../../../../store/db-operations';
 
 import classes from './AddItem.module.css'
 import AddItemForm from './AddItemForm'
 
 export default function AddItem(props) {
       const goBack = '<'
+
+      useEffect(() => {
+            makeSureDBexists()
+      }, []);
 
       return (
             <Fragment>
