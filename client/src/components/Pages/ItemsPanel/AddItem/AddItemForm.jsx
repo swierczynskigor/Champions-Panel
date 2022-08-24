@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import useInput from '../../../../hooks/use-input'
-import FileBase64 from 'react-file-base64';
 
 export default function AddItemForm(props) {
-      const [file, setFile] = useState('');
       const [category, setCategory] = useState('Fighter');
 
       const {
@@ -15,9 +13,18 @@ export default function AddItemForm(props) {
             reset: resetNameInput
       } = useInput(value => value.trim() !== '')
 
+      const {
+            value: enteredImage,
+            isValid: enteredImageIsValid,
+            hasError: imageInputIsInvalid,
+            handleInputChange: handleInputImageChange,
+            handleInputBlur: handleInputImageBlur,
+            reset: resetImageInput
+      } = useInput(value => value.trim() !== '')
+
 
       const nameInputClasses = `input ${nameInputIsInvalid ? 'invalid' : ''}`
-
+      const imageInputClasses = `input ${imageInputIsInvalid ? 'invalid' : ''}`
 
       const handleSelectChange = e => {
             setCategory(e.target.value)
@@ -26,22 +33,22 @@ export default function AddItemForm(props) {
 
       const handleSubmit = (e) => {
             e.preventDefault()
-            const obj = { name: enteredName, image: file, category }
-            // fetch('https://vafk7n.deta.dev/createItem', { method: 'POST', body: JSON.stringify() })
+            const obj = { name: enteredName, image: enteredImage + '.png', category }
+            fetch('http://localhost:5000/items/add', {
+                  method: 'POST',
+                  headers: {
+                        "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(obj)
+            })
 
-            console.log(enteredName, file, category)
+            console.log(enteredName, enteredImage, category)
 
-            console.log('close')
             resetNameInput()
+            resetImageInput()
+            props.add(obj)
             props.close()
-
       }
-
-      const handleGetFile = (e) => {
-            setFile(e.base64)
-      }
-
-
 
       return (
             <form action="" onSubmit={handleSubmit}>
@@ -56,10 +63,15 @@ export default function AddItemForm(props) {
                         />
                         {nameInputIsInvalid && <p className="error-text">Name must not be empty</p>}
                   </div>
-                  <div className={nameInputClasses}>
-                        <FileBase64
-                              multiple={false}
-                              onDone={handleGetFile} />
+                  <div className={imageInputClasses}>
+                        <input
+                              type='text'
+                              id='name'
+                              value={enteredImage}
+                              onChange={handleInputImageChange}
+                              onBlur={handleInputImageBlur}
+                        />
+                        {imageInputIsInvalid && <p className="error-text">Put on correct id</p>}
                   </div>
                   <select value={category} onChange={handleSelectChange} id="">
                         <option value="Fighter">Fighter</option>
@@ -68,8 +80,10 @@ export default function AddItemForm(props) {
                         <option value="Assassyn">Assassyn</option>
                         <option value="Support">Support</option>
                         <option value="Marksman">Marksman</option>
+                        <option value="Starter">Starter</option>
+                        <option value="Boots">Boots</option>
                   </select>
-                  <button className='button' disabled={!enteredNameIsValid}>Submit</button>
+                  <button className='button' disabled={!enteredNameIsValid && !enteredImageIsValid}>Submit</button>
             </form >
       )
 }

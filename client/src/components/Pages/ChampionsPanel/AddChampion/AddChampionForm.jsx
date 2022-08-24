@@ -3,7 +3,6 @@ import useInput from '../../../../hooks/use-input'
 
 import './AddChampionForm.css'
 import BuildList from './BuildList';
-import Button from '../../../Ui/Button';
 
 export default function AddChampionForm(props) {
 

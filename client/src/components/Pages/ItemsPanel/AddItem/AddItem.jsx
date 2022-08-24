@@ -1,5 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
-import { makeSureDBexists } from '../../../../store/db-operations';
+import React, { Fragment } from 'react'
 
 import classes from './AddItem.module.css'
 import AddItemForm from './AddItemForm'
@@ -7,17 +6,13 @@ import AddItemForm from './AddItemForm'
 export default function AddItem(props) {
       const goBack = '<'
 
-      useEffect(() => {
-            makeSureDBexists()
-      }, []);
-
       return (
             <Fragment>
                   <div className={classes['main-container']}>
                         <div className={classes.bg} onClick={props.handleHideWindow}></div>
                         <div className={classes.container}>
                               <div className={classes.goBack} onClick={props.handleHideWindow}>{goBack}</div>
-                              <AddItemForm close={props.handleHideWindow} />
+                              <AddItemForm close={props.handleHideWindow} add={props.handleAddItem} />
                         </div>
                   </div>
             </Fragment>

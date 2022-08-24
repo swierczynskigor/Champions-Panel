@@ -15,3 +15,14 @@
       flex-wrap: wrap;
       height: auto;
 }
+
+.items {
+      width: 100%;
+      height: 90%;
+      overflow-y: scroll;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: flex-start;
+}
