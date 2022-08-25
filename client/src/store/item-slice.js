@@ -2,17 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const itemSlice = createSlice({
       name: 'ui',
-      initialState: { cartIsVisible: false, notification: null },
+      initialState: { items: [] },
       reducers: {
             toggle(state) {
                   state.cartIsVisible = !state.cartIsVisible
             },
-            showNotification(state, action) {
-                  state.notification = {
-                        status: action.payload.status,
-                        title: action.payload.title,
-                        message: action.payload.message
-                  }
+            saveItems(state, action) {
+                  state.items = [...action.payload]
             }
       }
 })
