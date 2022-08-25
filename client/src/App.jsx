@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
       BrowserRouter,
       Routes,
@@ -9,7 +9,32 @@ import MainPanel from "./components/Pages/MainPanel/MainPanel";
 import ChampionsPanel from "./components/Pages/ChampionsPanel/ChampionsPanel";
 import ItemsPanel from "./components/Pages/ItemsPanel/ItemsPanel";
 
+import { itemActions } from './store/item-slice';
+import { useDispatch } from 'react-redux'
+
 export default function App() {
+      const dispatch = useDispatch()
+
+      async function getItems() {
+            const response = await fetch(`http://localhost:5000/items/get`);
+
+            if (!response.ok) {
+                  const message = `An error occurred: ${response.statusText}`;
+                  window.alert(message);
+                  return;
+            }
+
+            const res = await response.json();
+            dispatch(itemActions.getItems({ items: [...res] }))
+      }
+
+
+      useEffect(() => {
+            getItems()
+      });
+
+
+
       return (
             <BrowserRouter>
                   <Routes>

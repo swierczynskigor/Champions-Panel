@@ -7,8 +7,9 @@ const itemSlice = createSlice({
             toggle(state) {
                   state.cartIsVisible = !state.cartIsVisible
             },
-            saveItems(state, action) {
-                  state.items = [...action.payload]
+            getItems(state, action) {
+                  state.items = [...action.payload.items]
+                  console.table(state.items)
             }
       }
 })

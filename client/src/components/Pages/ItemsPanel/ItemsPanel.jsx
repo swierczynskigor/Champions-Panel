@@ -5,31 +5,23 @@ import AddItem from './AddItem/AddItem';
 import classes from './ItemsPanel.module.css'
 import Miniature from '../../Ui/Miniature';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { itemActions } from '../../../store';
+
 export default function ItemsPanel() {
+      const dispatch = useDispatch()
       const [loaded, setLoaded] = useState(false);
       const [showAddItem, setShowAddItem] = useState(false);
-      const [itemsList, setItemsList] = useState([]);
+      const itemsList = useSelector(state => state.items.items);
 
-      async function getItems() {
-            const response = await fetch(`http://localhost:5000/items/get`);
 
-            if (!response.ok) {
-                  const message = `An error occurred: ${response.statusText}`;
-                  window.alert(message);
-                  return;
-            }
-
-            const res = await response.json();
-            setItemsList(res);
-      }
 
       useEffect(() => {
-            getItems()
             setLoaded(true)
       }, []);
 
       const handleAddItem = (newItem) => {
-            setItemsList([...itemsList, newItem])
+            dispatch(itemActions.getItems({ items: [...itemsList, newItem] }))
       }
 
       const handleShowAddItem = () => setShowAddItem(true)

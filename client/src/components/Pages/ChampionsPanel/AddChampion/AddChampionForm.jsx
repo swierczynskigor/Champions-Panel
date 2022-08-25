@@ -34,18 +34,10 @@ export default function AddChampionForm(props) {
             setBuilds([...builds, newBuild])
       }
 
-      const toBase64 = file => new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-      });
-
-
       if (!showAddNewBuild)
             return (
                   <Fragment>
-                        <div className="goBack" onClick={props.handleHideWindow}>{goBack}</div>
+                        <div className="goBack" onClick={() => props.close()}>{goBack}</div>
                         <form action="" onSubmit={handleSubmit}>
                               <div className={nameInputClasses}>
                                     <label htmlFor='name'>Champions Name</label>
@@ -60,7 +52,7 @@ export default function AddChampionForm(props) {
                               </div>
                               <BuildList builds={builds}></BuildList>
                               <div className='buttons'>
-                                    <button type="button">Add build</button>
+                                    <button type="button" onClick={() => setShowAddNewBuild(true)}>Add build</button>
                               </div>
                               <button className='button' disabled={!enteredNameIsValid}>Submit</button>
                         </form>
@@ -69,23 +61,8 @@ export default function AddChampionForm(props) {
       else
             return (
                   <Fragment>
-                        <div className='goBack' onClick={props.handleHideWindow}>{goBack}</div>
+                        <div className='goBack' onClick={() => setShowAddNewBuild(false)}>{goBack}</div>
                         <form action="" onSubmit={handleSubmit}>
-                              <div className={nameInputClasses}>
-                                    <label htmlFor='name'>Champions Name</label>
-                                    <input
-                                          type='text'
-                                          id='name'
-                                          value={enteredName}
-                                          onChange={handleInputNameChange}
-                                          onBlur={handleInputNameBlur}
-                                    />
-                                    {nameInputIsInvalid && <p className="error-text">Name must not be empty</p>}
-                              </div>
-                              <BuildList builds={builds}></BuildList>
-                              <div className='buttons'>
-                                    <button type="button">Add build</button>
-                              </div>
                               <button className='button' disabled={!enteredNameIsValid}>Submit</button>
                         </form>
                   </Fragment>
