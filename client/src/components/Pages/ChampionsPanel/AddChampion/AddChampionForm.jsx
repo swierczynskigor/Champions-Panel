@@ -1,8 +1,10 @@
 import React, { Fragment, useState } from 'react'
 import useInput from '../../../../hooks/use-input'
+import ItemContainer from '../../../Ui/ItemContainer';
 
 import './AddChampionForm.css'
 import BuildList from './BuildList';
+import NewBuild from './NewBuild';
 
 export default function AddChampionForm(props) {
       const goBack = '<'
@@ -60,11 +62,6 @@ export default function AddChampionForm(props) {
             )
       else
             return (
-                  <Fragment>
-                        <div className='goBack' onClick={() => setShowAddNewBuild(false)}>{goBack}</div>
-                        <form action="" onSubmit={handleSubmit}>
-                              <button className='button' disabled={!enteredNameIsValid}>Submit</button>
-                        </form>
-                  </Fragment>
+                  <NewBuild hide={() => setShowAddNewBuild(false)} />
             )
 }
