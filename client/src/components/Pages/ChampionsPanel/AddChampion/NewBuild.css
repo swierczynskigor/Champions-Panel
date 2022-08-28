@@ -1,0 +1,73 @@
+form {
+    margin: 10px 30px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+}
+
+.input input {
+    width: 80%;
+    max-width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    background: none;
+    color: white;
+    font-size: 16px;
+    border: 2px solid white;
+}
+
+.invalid label {
+    color: #ff6b6b;
+}
+
+.invalid input {
+    border-color: #ff6b6b;
+}
+
+.error-text {
+    color: #ff6b6b;
+}
+
+.buttons button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+
+.button {
+    margin: 20px 0;
+    padding: 10px 20px;
+    background: none;
+    color: white;
+    border: white 2px solid;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.button:hover {
+    background-color: white;
+    color: black;
+}
+
+.goBack {
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 20px;
+    width: 50px;
+}
+
+.item-containers {
+    display: flex;
+    flex-direction: row;
+}

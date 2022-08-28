@@ -2,6 +2,8 @@ import React, { Fragment, useState } from 'react'
 
 import ItemContainer from '../../../Ui/ItemContainer'
 
+import './NewBuild.css'
+
 export default function NewBuild(props) {
       const goBack = '<'
 
