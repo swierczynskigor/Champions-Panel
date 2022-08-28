@@ -9,7 +9,6 @@ const itemSlice = createSlice({
             },
             getItems(state, action) {
                   state.items = [...action.payload.items]
-                  console.table(state.items)
             }
       }
 })

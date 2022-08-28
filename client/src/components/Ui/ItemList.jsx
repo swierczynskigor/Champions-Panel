@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import './ItemList.css'
 
@@ -8,14 +8,41 @@ import Miniature from './Miniature'
 
 export default function ItemList(props) {
       const items = useSelector(state => state.items.items)
+      const [category, setCategory] = useState('All');
+
+      const handleSelectChange = e => {
+            setCategory(e.target.value)
+      }
 
       const itemList = items.map(el => {
-            return <Miniature key={el.image} image={el.image} name={el.name} type={'item'} click={props.pick} />
+            if (category === 'All')
+                  return <Miniature key={el.image.slice(0, 4)} image={el.image} name={el.name} type={'item'} click={props.pick} />
+            else if (category === el.category)
+                  return <Miniature key={el.image.slice(0, 4)} image={el.image} name={el.name} type={'item'} click={props.pick} />
+            else
+                  return null
+
       })
 
       return (
-            <div className='items'>
-                  {itemList}
+            <div className='list-container'>
+                  <div className='items'>
+                        <div className='button-container'>
+                              <button onClick={props.close}>Close</button>
+                              <select value={category} onChange={handleSelectChange} id="">
+                                    <option value="All">All</option>
+                                    <option value="Fighter">Fighter</option>
+                                    <option value="Tank">Tank</option>
+                                    <option value="Mage">Mage</option>
+                                    <option value="Assassyn">Assassyn</option>
+                                    <option value="Support">Support</option>
+                                    <option value="Marksman">Marksman</option>
+                                    <option value="Starter">Starter</option>
+                                    <option value="Boots">Boots</option>
+                              </select>
+                        </div>
+                        {itemList}
+                  </div>
             </div>
       )
 }

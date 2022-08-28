@@ -9,7 +9,12 @@ export default function ItemContainer(props) {
       const [showItemList, setShowItemList] = useState(false);
 
       const handleShowItemList = () => { setShowItemList(true) }
+      const handleHideItemList = () => { setShowItemList(false) }
 
+      const handlePickItem = (pickedItem) => {
+            setItem(pickedItem)
+            console.log(pickedItem)
+      }
 
       if (!item)
             return (
@@ -17,7 +22,7 @@ export default function ItemContainer(props) {
                         <div className='container' onClick={handleShowItemList}>
                               {!item ? <div>+</div> : <img src={'./images/items/' + props.img} alt={props.img}></img>}
                         </div>
-                        <ItemList />
+                        {showItemList && <ItemList close={handleHideItemList} pick={handlePickItem} />}
                   </Fragment>
             )
 
