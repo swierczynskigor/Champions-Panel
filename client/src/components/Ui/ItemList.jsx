@@ -13,12 +13,16 @@ export default function ItemList(props) {
       const handleSelectChange = e => {
             setCategory(e.target.value)
       }
+      const handlePick = (pickedItem) => {
+            props.close()
+            props.pick(pickedItem)
+      }
 
       const itemList = items.map(el => {
             if (category === 'All')
-                  return <Miniature key={el.image.slice(0, 4)} image={el.image} name={el.name} type={'item'} click={props.pick} />
+                  return <Miniature key={el.image.slice(0, 4)} image={el.image} name={el.name} type={'item'} click={handlePick} />
             else if (category === el.category)
-                  return <Miniature key={el.image.slice(0, 4)} image={el.image} name={el.name} type={'item'} click={props.pick} />
+                  return <Miniature key={el.image.slice(0, 4)} image={el.image} name={el.name} type={'item'} click={handlePick} />
             else
                   return null
 

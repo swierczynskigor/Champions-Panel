@@ -5,7 +5,7 @@ import './Miniatrue.css'
 export default function Miniature(props) {
 
       const handleClick = () => {
-            props.click(props.name)
+            props.click(props)
       }
 
       return (

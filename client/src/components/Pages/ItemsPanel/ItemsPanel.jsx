@@ -28,13 +28,13 @@ export default function ItemsPanel() {
       const handleHideAddItem = () => setShowAddItem(false)
 
       const handleDeleteItem = async (toDel) => {
-            console.log(toDel)
+            console.log(toDel.name)
             await fetch('http://localhost:5000/items/del', {
                   method: 'POST',
                   headers: {
                         "Content-Type": "application/json"
                   },
-                  body: JSON.stringify({ name: toDel })
+                  body: JSON.stringify({ name: toDel.name })
             })
       }
 

@@ -5,25 +5,23 @@ import './ItemContainer.css'
 import ItemList from './ItemList';
 
 export default function ItemContainer(props) {
-      const [item, setItem] = useState(null);
       const [showItemList, setShowItemList] = useState(false);
 
       const handleShowItemList = () => { setShowItemList(true) }
       const handleHideItemList = () => { setShowItemList(false) }
 
       const handlePickItem = (pickedItem) => {
-            setItem(pickedItem)
+            props.pick(pickedItem, props.idx)
             console.log(pickedItem)
       }
 
-      if (!item)
-            return (
-                  <Fragment>
-                        <div className='container' onClick={handleShowItemList}>
-                              {!item ? <div>+</div> : <img src={'./images/items/' + props.img} alt={props.img}></img>}
-                        </div>
-                        {showItemList && <ItemList close={handleHideItemList} pick={handlePickItem} />}
-                  </Fragment>
-            )
+      return (
+            <Fragment>
+                  <div className='container' onClick={handleShowItemList}>
+                        {!props.item.image ? <div>+</div> : <img src={'./images/items/' + props.item.image} alt={props.image}></img>}
+                  </div>
+                  {showItemList && <ItemList close={handleHideItemList} pick={handlePickItem} />}
+            </Fragment>
+      )
 
 }
