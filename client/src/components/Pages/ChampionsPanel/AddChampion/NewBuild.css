@@ -71,3 +71,13 @@ form {
     display: flex;
     flex-direction: row;
 }
+
+.input select {
+    width: 100px;
+}
+
+
+.runes-container {
+    display: flex;
+    flex-direction: row;
+}

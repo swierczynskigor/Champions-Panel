@@ -18,7 +18,7 @@ export default function ItemContainer(props) {
       return (
             <Fragment>
                   <div className='container' onClick={handleShowItemList}>
-                        {!props.item.image ? <div>+</div> : <img src={'./images/items/' + props.item.image} alt={props.image}></img>}
+                        {!props.item.image ? <div>+</div> : <img src={'./images/items/' + props.item.image} alt={props.item.image}></img>}
                   </div>
                   {showItemList && <ItemList close={handleHideItemList} pick={handlePickItem} />}
             </Fragment>
