@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import './RunesList.css'
 import Miniature from '../Miniature';
 import listReactFiles from 'list-react-files'
-import images from '../../../../public/images'
 
 const DUMMY_RUNES = {
       Domination: {
@@ -41,18 +40,10 @@ const DUMMY_RUNES = {
 export default function RuneList(props) {
       const [runes, setRunes] = useState([]);
       const [loading, setLoading] = useState(true);
-
-      console.log(images)
-
+      const trees = Object.keys(DUMMY_RUNES)
 
       useEffect(() => {
-            const getRunes = async () => {
-                  setRunes(listReactFiles('./images/runes/' + props.category + '/' + props.idx).then(files => console.log(files)))
-                  setLoading(false)
-            }
 
-            // getRunes()
-            // console.log(runes)
       }, []);
 
       const handlePick = (pickedItem) => {
