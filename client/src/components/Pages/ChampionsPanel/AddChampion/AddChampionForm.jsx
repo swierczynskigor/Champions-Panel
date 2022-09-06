@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from 'react'
 import useInput from '../../../../hooks/use-input'
-import ItemContainer from '../../../Ui/ItemContainer';
 
 import './AddChampionForm.css'
 import BuildList from './BuildList';

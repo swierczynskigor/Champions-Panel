@@ -28,6 +28,12 @@ export default function NewBuild(props) {
             setMainRunesCat(e.target.value)
       }
 
+      const handlePickMainRune = (rune, index) => {
+            let base = { ...curBuild }
+            base.firstRunes[index - 1] = rune
+            setCurBuild(base)
+      }
+
 
       const handleSubmit = () => {
 
@@ -66,10 +72,24 @@ export default function NewBuild(props) {
                                     <option value="Sorcery">Sorcery</option>
                               </select>
                               <div className='runes-container'>
-                                    <RuneContainer rune={curBuild.firstRunes[0]} idx={1} category={mainRunesCat} />
-                                    <RuneContainer rune={curBuild.firstRunes[1]} idx={2} category={mainRunesCat} />
-                                    <RuneContainer rune={curBuild.firstRunes[2]} idx={3} category={mainRunesCat} />
-                                    <RuneContainer rune={curBuild.firstRunes[3]} idx={4} category={mainRunesCat} />
+                                    <RuneContainer rune={curBuild.firstRunes[0]} idx={1} category={mainRunesCat} pick={handlePickMainRune} tree={'first'} />
+                                    <RuneContainer rune={curBuild.firstRunes[1]} idx={2} category={mainRunesCat} pick={handlePickMainRune} tree={'first'} />
+                                    <RuneContainer rune={curBuild.firstRunes[2]} idx={3} category={mainRunesCat} pick={handlePickMainRune} tree={'first'} />
+                                    <RuneContainer rune={curBuild.firstRunes[3]} idx={4} category={mainRunesCat} pick={handlePickMainRune} tree={'first'} />
+                              </div>
+                        </div>
+                        <div className="input">
+                              <label htmlFor="">Main Runes</label>
+                              <select value={mainRunesCat} onChange={handleMainRunesChange} id="">
+                                    <option value="Domination">Domination</option>
+                                    <option value="Inspiration">Inspiration</option>
+                                    <option value="Precision">Precision</option>
+                                    <option value="Resolve">Resolve</option>
+                                    <option value="Sorcery">Sorcery</option>
+                              </select>
+                              <div className='runes-container'>
+                                    <RuneContainer rune={curBuild.secondRunes[0]} idx={1} category={mainRunesCat} pick={handlePickMainRune} tree={'second'} />
+                                    <RuneContainer rune={curBuild.secondRunes[1]} idx={2} category={mainRunesCat} pick={handlePickMainRune} tree={'second'} />
                               </div>
                         </div>
                         <button className='button'>Submit</button>

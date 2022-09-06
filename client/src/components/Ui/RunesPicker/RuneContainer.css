@@ -16,6 +16,10 @@
       transition: all ease .5s;
 }
 
+.container img {
+      width: 90%;
+}
+
 .container:hover>* {
       transform: scale(1.1);
 }

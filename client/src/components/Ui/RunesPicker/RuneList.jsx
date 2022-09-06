@@ -15,7 +15,7 @@ const DUMMY_RUNES = {
             1: ['GlacialAugment', 'FirstStrike', 'UnsealedSpellbook'],
             2: ['HextechFlashtraption', 'MagicalFootwear', 'PerfectTiming'],
             3: ['BiscuitDelivery', 'FutureMarket', 'MinionDematerializer'],
-            4: ['CosmicInsight', 'ApproachVelocity', 'TimeWrapTonic'],
+            4: ['CosmicInsight', 'ApproachVelocity', 'TimeWarpTonic'],
       },
       Precision: {
             1: ['PressTheAttack', 'FleetFootwork', 'LethalTempo', 'Conqueror'],
@@ -34,27 +34,30 @@ const DUMMY_RUNES = {
             2: ['Pokeshield', 'ManaflowBand', 'NimbusCloak'],
             3: ['AbsoluteFocus', 'CelerityTemp', 'Transcendence'],
             4: ['GatheringStorm', 'Scorch', 'Waterwalking'],
-      },
+      }
 }
 
 export default function RuneList(props) {
       const [runes, setRunes] = useState([]);
       const [loading, setLoading] = useState(true);
-      const trees = Object.keys(DUMMY_RUNES)
+      // const trees = Object.keys(DUMMY_RUNES)
 
       useEffect(() => {
+            setRunes(DUMMY_RUNES[props.category])
+            setLoading(false)
+      }, [props.category]);
 
-      }, []);
-
-      const handlePick = (pickedItem) => {
+      const handlePick = (pickedRune) => {
             props.close()
-            props.pick(pickedItem)
+            props.pick(pickedRune)
       }
 
 
+
+
       if (!loading) {
-            const itemList = runes.map(el => {
-                  return <Miniature key={el.image.slice(0, 4)} image={el.image} name={el.name} type={'runes'} click={handlePick} />
+            const itemList = runes[props.idx].map(rune => {
+                  return <Miniature key={rune} name={rune} type={'rune'} image={props.category + "/" + props.idx + "/" + rune + ".png"} click={handlePick} />
             })
 
             return (

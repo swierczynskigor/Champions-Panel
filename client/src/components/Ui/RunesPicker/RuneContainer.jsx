@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useEffect } from 'react'
 
 import './RuneContainer.css'
 
@@ -10,15 +10,18 @@ export default function RuneContainer(props) {
       const handleShowRuneList = () => { setShowItemList(true) }
       const handleHideRuneList = () => { setShowItemList(false) }
 
+      useEffect(() => {
+            props.pick({}, props.idx)
+      }, [props.category]);
+
       const handlePickRune = (pickedRune) => {
             props.pick(pickedRune, props.idx)
-            console.log(pickedRune)
       }
 
       return (
             <Fragment>
                   <div className='container' onClick={handleShowRuneList}>
-                        {!props.rune.image ? <div>+</div> : <img src={'./images/items/' + props.rune.image} alt={props.rune.image}></img>}
+                        {!props.rune.image ? <div>+</div> : <img src={'./images/runes/' + props.rune.image} alt={props.rune.name}></img>}
                   </div>
                   {showRuneList && <RuneList close={handleHideRuneList} pick={handlePickRune} idx={props.idx} category={props.category} />}
             </Fragment>
