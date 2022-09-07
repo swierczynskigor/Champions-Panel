@@ -16,7 +16,7 @@ export default function ItemContainer(props) {
 
   const handlePickItem = (pickedItem) => {
     props.pick(pickedItem, props.idx);
-    console.log(pickedItem);
+    // console.log(pickedItem);
   };
 
   return (

@@ -30,6 +30,7 @@ export default function AddChampionForm(props) {
   };
 
   const handleAddBuild = (newBuild) => {
+    console.table(newBuild)
     setBuilds([...builds, newBuild]);
   };
 
