@@ -22,11 +22,19 @@ export default function AddChampionForm(props) {
   const nameInputClasses = `input ${nameInputIsInvalid ? "invalid" : ""}`;
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    const obj = { name: enteredName, builds }
+    fetch('http://localhost:5000/champions/add', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(obj)
+    })
 
-    console.log("close");
-    resetNameInput();
-    props.close();
+    resetNameInput()
+    props.add(obj)
+    props.close()
   };
 
   const handleAddBuild = (newBuild) => {

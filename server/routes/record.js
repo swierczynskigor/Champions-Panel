@@ -53,15 +53,18 @@ recordRoutes.route("/items/add").post(function (req, response) {
 });
 
 // This section will help you update a record by id.
-recordRoutes.route("/champions/getStarters").post(function (req, response) {
-      let db_connect = dbo.getDb(dbName);
-      db_connect
-            .collection("items")
-            .find({ category: 'Starter' })
-            .toArray(function (err, result) {
-                  if (err) throw err;
-                  res.json(result);
-            });
+recordRoutes.route("/champions/add").post(function (req, response) {
+      let db_connect = dbo.getDb();
+      let myobj = {
+            name: req.body.name,
+            image: req.body.name.replace(' ', '_') + 'Square.webp',
+            builds: req.body.builds
+      }
+      console.log('Add champion:\n' + JSON.stringify(myobj))
+      db_connect.collection("champions").insertOne(myobj, function (err, res) {
+            if (err) throw err;
+            response.json(res);
+      });
 });
 
 // This section will help you delete a record

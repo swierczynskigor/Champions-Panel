@@ -9,7 +9,7 @@ export default function AddChampion(props) {
                   <div className={classes['main-container']}>
                         <div className={classes.bg} onClick={props.handleHideWindow}></div>
                         <div className={classes.container}>
-                              <AddChampionForm close={props.handleHideWindow} />
+                              <AddChampionForm add={props.handleAdd} close={props.handleHideWindow} />
                         </div>
                   </div>
             </Fragment>
