@@ -1,14 +1,17 @@
 import React, { Fragment, useState } from "react";
 import Button from "../../Ui/Button";
 import AddChampion from "./AddChampion/AddChampion";
+import EditChampion from "./AddChampion/EditChampion";
 
 import classes from "./ChampionsPanel.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { championActions } from "../../../store";
+import Miniature from "../../Ui/Miniature";
 
 export default function ChampionsPanel() {
   const dispatch = useDispatch();
   const [showAddChampion, setShowAddChampion] = useState(false);
+  const [showEditChampion, setShowEditChampion] = useState(false);
 
   const champions = useSelector((state) => state.champions.champions);
 
@@ -23,10 +26,24 @@ export default function ChampionsPanel() {
     );
   };
 
+  const handleChampionEdit = () => {
+
+  }
+
+  const championsList = champions.map(champion => {
+    return <Miniature key={champion.name} name={champion.name} type={"champion"} image={champion.image} click={handleChampionEdit} />
+  })
+
   return (
     <Fragment>
       {showAddChampion && (
         <AddChampion
+          handleAdd={handleAddChampion}
+          handleHideWindow={handleHideAddChampion}
+        />
+      )}
+      {showEditChampion && (
+        <EditChampion
           handleAdd={handleAddChampion}
           handleHideWindow={handleHideAddChampion}
         />
@@ -37,7 +54,9 @@ export default function ChampionsPanel() {
             Add Champion
           </Button>
         </nav>
-        <div className={classes.champions}></div>
+        <div className={classes.champions}>
+          {championsList}
+        </div>
       </div>
     </Fragment>
   );
