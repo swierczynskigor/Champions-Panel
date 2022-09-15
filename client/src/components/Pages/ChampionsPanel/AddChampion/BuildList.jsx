@@ -3,7 +3,6 @@ import React from "react";
 import "./BuildList.css";
 
 export default function BuildList(props) {
-  console.log(props.builds);
   let idx = -1;
 
   const handleDeleteBuild = (index) => {};

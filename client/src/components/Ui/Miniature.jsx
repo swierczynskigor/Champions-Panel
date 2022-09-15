@@ -1,17 +1,19 @@
-import React from 'react'
+import React from "react";
 
-import './Miniatrue.css'
+import "./Miniatrue.css";
 
 export default function Miniature(props) {
+  const handleClick = () => {
+    props.click({ image: props.image, type: props.type, name: props.name });
+  };
 
-      const handleClick = () => {
-            props.click(props)
-      }
-
-      return (
-            <div className='main' onClick={handleClick}>
-                  <img src={"/images/" + props.type + "s/" + props.image} alt={props.name} />
-                  <p>{props.name}</p>
-            </div>
-      )
+  return (
+    <div className="main" onClick={handleClick}>
+      <img
+        src={"/images/" + props.type + "s/" + props.image}
+        alt={props.name}
+      />
+      <p>{props.name}</p>
+    </div>
+  );
 }

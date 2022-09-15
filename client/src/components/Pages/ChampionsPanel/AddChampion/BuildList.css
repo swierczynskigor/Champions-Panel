@@ -36,5 +36,8 @@
   flex-wrap: wra;
 }
 
-.btn {
+.btn button {
+  background-color: red;
+  color: white;
+  padding: 8px 16px;
 }
