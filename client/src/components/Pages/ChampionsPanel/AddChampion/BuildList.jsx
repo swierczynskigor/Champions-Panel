@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./BuildList.css";
 
 export default function BuildList(props) {
-  let idx = -1;
-
-  const handleDeleteBuild = (index) => {};
+  const handleDeleteBuild = (e, index) => {
+    e.preventDefault()
+    props.handleDel(index)
+  };
 
   const builds = props.builds.map((build) => {
-    idx++;
     let key = Math.random();
     const starters = build.starters.map((starter) => {
       key++;
@@ -57,7 +57,7 @@ export default function BuildList(props) {
         <div>{mainRunes}</div>
         <div>{secondRunes}</div>
         <div className="btn">
-          <button onClick={() => handleDeleteBuild(idx)}>Delete</button>
+          <button onClick={(e) => handleDeleteBuild(e, build.idx)}>Delete</button>
         </div>
       </div>
     );

@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 import Button from "../../Ui/Button";
 import AddChampion from "./AddChampion/AddChampion";
-import EditChampion from "./AddChampion/EditChampion";
 
 import classes from "./ChampionsPanel.module.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -33,6 +32,7 @@ export default function ChampionsPanel() {
     console.log(pickedChamp);
     const obj = champions.filter((c) => c.name === pickedChamp.name)[0];
     console.log(obj);
+    setChampToEdit(obj)
   };
 
   const championsList = champions.map((champion) => {

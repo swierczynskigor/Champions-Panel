@@ -1,11 +1,15 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import useInput from "../../../../hooks/use-input";
 
 import "./EditChampion.css";
 import BuildList from "./BuildList";
 import NewBuild from "./NewBuild";
 
+import { useDispatch } from "react-redux";
+import { championActions } from "../../../../store/champion-slice";
+
 export default function EditChampion(props) {
+  const dispatch = useDispatch();
   const goBack = "<";
   const [showAddNewBuild, setShowAddNewBuild] = useState(false);
   const [builds, setBuilds] = useState([]);
@@ -21,9 +25,15 @@ export default function EditChampion(props) {
 
   const nameInputClasses = `input ${nameInputIsInvalid ? "invalid" : ""}`;
 
+  useEffect(() => {
+    let idx = -1
+    setBuilds([...props.toEdit.builds].map(build => { idx++; return { ...build, idx } }));
+    handleInputNameChange({ target: { value: props.toEdit.name } })
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const obj = { name: enteredName, builds };
+    const obj = { name: enteredName, builds, _id: props.toEdit._id };
     fetch("http://localhost:5000/champions/update", {
       method: "POST",
       headers: {
@@ -33,14 +43,18 @@ export default function EditChampion(props) {
     });
 
     resetNameInput();
-    props.add(obj);
+    dispatch(championActions.updateChampion({ champion: { name: enteredName, builds, _id: props.toEdit._id, image: props.toEdit.name.replace(" ", "_") + "Square.webp", } }));
     props.close();
   };
 
   const handleAddBuild = (newBuild) => {
     console.table(newBuild);
-    setBuilds([...builds, newBuild]);
+    setBuilds([...builds, { ...newBuild, idx: builds[builds.length].idx + 1 }]);
   };
+  const handleDelete = (idx) => {
+    console.log(idx)
+    setBuilds([...builds].filter(build => build.idx !== idx))
+  }
 
   if (!showAddNewBuild)
     return (
@@ -62,7 +76,7 @@ export default function EditChampion(props) {
               <p className="error-text">Name must not be empty</p>
             )}
           </div>
-          <BuildList builds={builds}></BuildList>
+          <BuildList builds={builds} handleDel={handleDelete}></BuildList>
           <div className="buttons">
             <button type="button" onClick={() => setShowAddNewBuild(true)}>
               Add build
