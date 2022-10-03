@@ -32,7 +32,7 @@ export default function ChampionsPanel() {
     console.log(pickedChamp);
     const obj = champions.filter((c) => c.name === pickedChamp.name)[0];
     console.log(obj);
-    setChampToEdit(obj)
+    setChampToEdit(obj);
   };
 
   const championsList = champions.map((champion) => {
