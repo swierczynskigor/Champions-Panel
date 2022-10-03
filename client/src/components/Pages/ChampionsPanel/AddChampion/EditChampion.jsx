@@ -26,14 +26,24 @@ export default function EditChampion(props) {
   const nameInputClasses = `input ${nameInputIsInvalid ? "invalid" : ""}`;
 
   useEffect(() => {
-    let idx = -1
-    setBuilds([...props.toEdit.builds].map(build => { idx++; return { ...build, idx } }));
-    handleInputNameChange({ target: { value: props.toEdit.name } })
+    let idx = -1;
+    setBuilds(
+      [...props.toEdit.builds].map((build) => {
+        idx++;
+        return { ...build, idx };
+      })
+    );
+    handleInputNameChange({ target: { value: props.toEdit.name } });
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const obj = { name: enteredName, builds, _id: props.toEdit._id };
+    const obj = {
+      name: enteredName,
+      builds,
+      image: enteredName.replace(" ", "_") + "Square.webp",
+      _id: props.toEdit._id,
+    };
     fetch("http://localhost:5000/champions/update", {
       method: "POST",
       headers: {
@@ -43,20 +53,35 @@ export default function EditChampion(props) {
     });
 
     resetNameInput();
-    dispatch(championActions.updateChampion({ champion: { name: enteredName, builds, _id: props.toEdit._id, image: props.toEdit.name.replace(" ", "_") + "Square.webp", } }));
+    dispatch(
+      championActions.updateChampion({
+        champion: {
+          name: enteredName,
+          builds,
+          _id: props.toEdit._id,
+          image: props.toEdit.name.replace(" ", "_") + "Square.webp",
+        },
+      })
+    );
     props.close();
   };
 
   const handleAddBuild = (newBuild) => {
     console.table(newBuild);
-    console.log(builds[builds.length - 1].idx + 1, builds[builds.length - 1].idx);
-    setBuilds([...builds, { ...newBuild, idx: builds[builds.length - 1].idx + 1 }]);
+    console.log(
+      builds[builds.length - 1].idx + 1,
+      builds[builds.length - 1].idx
+    );
+    setBuilds([
+      ...builds,
+      { ...newBuild, idx: builds[builds.length - 1].idx + 1 },
+    ]);
     //setBuilds([...builds, newBuild])
   };
   const handleDelete = (idx) => {
-    console.log(idx)
-    setBuilds([...builds].filter(build => build.idx !== idx))
-  }
+    console.log(idx);
+    setBuilds([...builds].filter((build) => build.idx !== idx));
+  };
 
   if (!showAddNewBuild)
     return (

@@ -22,23 +22,27 @@ export default function AddChampionForm(props) {
   const nameInputClasses = `input ${nameInputIsInvalid ? "invalid" : ""}`;
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const obj = { name: enteredName, builds }
-    fetch('http://localhost:5000/champions/add', {
-      method: 'POST',
+    e.preventDefault();
+    const obj = {
+      name: enteredName,
+      builds,
+      image: enteredName.replace(" ", "_") + "Square.webp",
+    };
+    fetch("http://localhost:5000/champions/add", {
+      method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(obj)
-    })
+      body: JSON.stringify(obj),
+    });
 
-    resetNameInput()
-    props.add(obj)
-    props.close()
+    resetNameInput();
+    props.add(obj);
+    props.close();
   };
 
   const handleAddBuild = (newBuild) => {
-    console.table(newBuild)
+    console.table(newBuild);
     setBuilds([...builds, newBuild]);
   };
 
