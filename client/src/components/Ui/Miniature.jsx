@@ -8,7 +8,7 @@ export default function Miniature(props) {
   };
 
   return (
-    <div className="main" onClick={handleClick}>
+    <div className="main-miniature-container" onClick={handleClick}>
       <img
         src={"/images/" + props.type + "s/" + props.image}
         alt={props.name}

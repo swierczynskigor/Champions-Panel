@@ -1,4 +1,4 @@
-.main {
+.main-miniature-container {
       margin: 5px;
       background-color: rgb(14, 0, 77);
       width: 110px;
@@ -15,10 +15,10 @@
       border-radius: 10px;
 }
 
-.main:hover {
+.main-miniature-container:hover {
       transform: scale(1.1);
 }
 
-.main img {
+.main-miniature-container img {
       width: 90%;
 }

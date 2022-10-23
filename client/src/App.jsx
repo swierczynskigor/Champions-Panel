@@ -8,6 +8,8 @@ import ItemsPanel from "./components/Pages/ItemsPanel/ItemsPanel";
 import { itemActions } from "./store/item-slice";
 import { championActions } from "./store/champion-slice";
 import { useDispatch } from "react-redux";
+import RolesPanel from "./components/Pages/RolesPanel/RolesPanel";
+import Role from "./components/Pages/RolesPanel/Role";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -54,6 +56,14 @@ export default function App() {
         </Route>
         <Route path="/items" element={<ItemsPanel />}>
           {/* <Route index element={<Main />} /> */}
+        </Route>
+        <Route path="/roles">
+          <Route index element={<RolesPanel />} />
+          <Route path='top' component={<Role val="top" />} />
+          <Route path='jungle' component={<Role val="jungle" />} />
+          <Route path='mid' component={<Role val="mid" />} />
+          <Route path='top' component={<Role val="bot" />} />
+          <Route path='supp' component={<Role val="supp" />} />
         </Route>
       </Routes>
     </BrowserRouter>
