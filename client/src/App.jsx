@@ -59,11 +59,11 @@ export default function App() {
         </Route>
         <Route path="/roles">
           <Route index element={<RolesPanel />} />
-          <Route path='top' component={<Role val="top" />} />
-          <Route path='jungle' component={<Role val="jungle" />} />
-          <Route path='mid' component={<Role val="mid" />} />
-          <Route path='top' component={<Role val="bot" />} />
-          <Route path='supp' component={<Role val="supp" />} />
+          <Route path="top" element={<Role val="top" />} />
+          <Route path="jungle" element={<Role val="jungle" />} />
+          <Route path="mid" element={<Role val="mid" />} />
+          <Route path="top" element={<Role val="bot" />} />
+          <Route path="supp" element={<Role val="supp" />} />
         </Route>
       </Routes>
     </BrowserRouter>
