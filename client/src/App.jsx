@@ -64,6 +64,7 @@ export default function App() {
           <Route path="mid" element={<Role val="mid" />} />
           <Route path="top" element={<Role val="bot" />} />
           <Route path="supp" element={<Role val="supp" />} />
+          <Route path="duobot" element={<Role val="duobot" />} />
         </Route>
       </Routes>
     </BrowserRouter>

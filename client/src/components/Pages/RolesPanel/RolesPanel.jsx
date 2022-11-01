@@ -11,6 +11,7 @@ export default function RolesPanel() {
                   <Button to='/roles/mid' styles={2}>Mid</Button>
                   <Button to='/roles/bot' styles={2}>Bot</Button>
                   <Button to='/roles/support' styles={2}>Support</Button>
+                  <Button to='/roles/duobot' styles={2}>Duo bot</Button>
             </div>
       )
 }

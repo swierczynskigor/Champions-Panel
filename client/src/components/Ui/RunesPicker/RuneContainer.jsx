@@ -16,7 +16,7 @@ export default function RuneContainer(props) {
 
   useEffect(() => {
     props.pick({}, props.idx);
-  }, [props.category]);
+  }, [props.category, props]);
 
   const handlePickRune = (pickedRune) => {
     props.pick(pickedRune, props.idx);
