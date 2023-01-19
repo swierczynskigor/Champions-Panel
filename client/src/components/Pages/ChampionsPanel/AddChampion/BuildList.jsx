@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./BuildList.css";
 
 export default function BuildList(props) {
   const handleDeleteBuild = (e, index) => {
-    e.preventDefault()
-    props.handleDel(index)
+    e.preventDefault();
+    props.handleDel(index);
   };
 
   const builds = props.builds.map((build) => {
@@ -50,18 +50,37 @@ export default function BuildList(props) {
       );
     });
 
-    return (
-      <div key={Math.random()} className="build">
-        <div>{starters}</div>
-        <div className="main-build">{buildComp}</div>
-        <div>{mainRunes}</div>
-        <div>{secondRunes}</div>
-        <div className="btn">
-          <button onClick={(e) => handleDeleteBuild(e, build.idx)}>Delete</button>
+    if (props.type === "toEdit")
+      return (
+        <div key={Math.random()} className="build">
+          <div>{starters}</div>
+          <div className="main-build">{buildComp}</div>
+          <div>{mainRunes}</div>
+          <div>{secondRunes}</div>
+          <div className="btnDel">
+            <button onClick={(e) => handleDeleteBuild(e, build.idx)}>
+              Delete
+            </button>
+          </div>
         </div>
-      </div>
-    );
+      );
+    else if (props.type === "toSelect")
+      return (
+        <div key={Math.random()} className="build">
+          <div>{starters}</div>
+          <div className="main-build">{buildComp}</div>
+          <div>{mainRunes}</div>
+          <div>{secondRunes}</div>
+          <div className="btnEdit">
+            <button onClick={(e) => handleDeleteBuild(e, build.idx)}>
+              Select
+            </button>
+          </div>
+        </div>
+      );
+    else return null;
   });
+
   if (props.builds) return <div className="list">{builds}</div>;
   else return null;
 }

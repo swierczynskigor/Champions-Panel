@@ -80,21 +80,23 @@ recordRoutes.route("/champions/get").get(function (req, res) {
 
 recordRoutes.route("/champions/update").post(function (req, response) {
   let db_connect = dbo.getDb();
+  console.log(req.body.builds.length);
   let myobj = {
     $set: {
       _id: ObjectId(req.body._id),
       name: req.body.name,
       image: req.body.name.replace(" ", "_") + "Square.webp",
       builds: req.body.builds,
-    }
+    },
   };
   console.log("Update champion:\n" + JSON.stringify(myobj.name));
-  db_connect.collection("champions").updateOne({ _id: ObjectId(req.body._id) }, myobj, function (err, res) {
-    if (err) throw err;
-    console.log("1 document updated");
-  });
+  db_connect
+    .collection("champions")
+    .updateOne({ _id: ObjectId(req.body._id) }, myobj, function (err, res) {
+      if (err) throw err;
+      console.log("1 document updated");
+    });
 });
-
 
 // This section will help you delete a record
 recordRoutes.route("/:id").delete((req, response) => {

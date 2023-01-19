@@ -1,18 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const rolesSlice = createSlice({
-      name: 'roles',
-      initialState: { items: [] },
-      reducers: {
-            toggle(state) {
-                  state.cartIsVisible = !state.cartIsVisible
-            },
-            getRoles(state, action) {
-                  state.items = [...action.payload.items]
-            }
-      }
-})
+  name: "roles",
+  initialState: {
+    top: [],
+    jungle: [],
+    mid: [],
+    bot: [],
+    support: [],
+    duobot: [],
+  },
+  reducers: {
+    toggle(state) {
+      state.cartIsVisible = !state.cartIsVisible;
+    },
+    addToRole(state, action) {
+      state[action.payload.role].push(action.payload.champ);
+    },
+  },
+});
 
-export const rolesActions = rolesSlice.actions
+export const rolesActions = rolesSlice.actions;
 
-export default rolesSlice
+export default rolesSlice;

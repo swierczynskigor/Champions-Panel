@@ -5,18 +5,18 @@ import "./RuneContainer.css";
 import RuneList from "./RuneList";
 
 export default function RuneContainer(props) {
-  const [showRuneList, setShowItemList] = useState(false);
+  const [showRuneList, setShowRuneList] = useState(false);
 
   const handleShowRuneList = () => {
-    setShowItemList(true);
+    setShowRuneList(true);
   };
   const handleHideRuneList = () => {
-    setShowItemList(false);
+    setShowRuneList(false);
   };
 
   useEffect(() => {
     props.pick({}, props.idx);
-  }, [props.category, props]);
+  }, [props.category]);
 
   const handlePickRune = (pickedRune) => {
     props.pick(pickedRune, props.idx);

@@ -62,8 +62,8 @@ export default function App() {
           <Route path="top" element={<Role val="top" />} />
           <Route path="jungle" element={<Role val="jungle" />} />
           <Route path="mid" element={<Role val="mid" />} />
-          <Route path="top" element={<Role val="bot" />} />
-          <Route path="supp" element={<Role val="supp" />} />
+          <Route path="bot" element={<Role val="bot" />} />
+          <Route path="support" element={<Role val="supp" />} />
           <Route path="duobot" element={<Role val="duobot" />} />
         </Route>
       </Routes>

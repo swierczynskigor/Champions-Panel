@@ -10,7 +10,7 @@ import { championActions } from "../../../../store/champion-slice";
 
 export default function EditChampion(props) {
   const dispatch = useDispatch();
-  const goBack = "<";
+  const goBack = "X";
   const [showAddNewBuild, setShowAddNewBuild] = useState(false);
   const [builds, setBuilds] = useState([]);
 
@@ -103,7 +103,7 @@ export default function EditChampion(props) {
               <p className="error-text">Name must not be empty</p>
             )}
           </div>
-          <BuildList builds={builds} handleDel={handleDelete}></BuildList>
+          <BuildList type="toEdit" builds={builds} handleDel={handleDelete} />
           <div className="buttons">
             <button type="button" onClick={() => setShowAddNewBuild(true)}>
               Add build

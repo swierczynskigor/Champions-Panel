@@ -6,7 +6,7 @@ import BuildList from "./BuildList";
 import NewBuild from "./NewBuild";
 
 export default function AddChampionForm(props) {
-  const goBack = "<";
+  const goBack = "X";
   const [showAddNewBuild, setShowAddNewBuild] = useState(false);
   const [builds, setBuilds] = useState([]);
 
