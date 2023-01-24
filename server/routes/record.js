@@ -109,4 +109,22 @@ recordRoutes.route("/:id").delete((req, response) => {
   });
 });
 
+recordRoutes.route("/role/updateList").post((req, res) => {
+  let db_connect = dbo.getDb();
+  let myobj = {
+    $set: {
+      _id: ObjectId(req.body._id),
+      name: req.body.name,
+      image: req.body.name.replace(" ", "_") + "Square.webp",
+      builds: req.body.builds,
+    },
+  };
+  db_connect
+    .collection("roles")
+    .updateOne({ name: req.body.name }, myobj, function (err, res) {
+      if (err) throw err;
+      console.log("1 document updated");
+    });
+});
+
 module.exports = recordRoutes;

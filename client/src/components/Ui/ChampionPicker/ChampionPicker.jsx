@@ -23,7 +23,26 @@ const ChampionPicker = (props) => {
           role: props.role,
         })
       );
+    } else {
+      dispatch(
+        rolesActions.removeFromRole({
+          role: props.role,
+          name: pickedChamp.name,
+        })
+      );
     }
+  };
+
+  const handleClose = () => {
+    fetch("http://localhost:5000/role/updateList", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ role: props.role, list: role }),
+    });
+
+    props.close();
   };
 
   const championList = champs.map((el) => {
@@ -55,7 +74,7 @@ const ChampionPicker = (props) => {
     <div className="list-container">
       <div className="items">
         <div className="button-container">
-          <button onClick={props.close}>Close</button>
+          <button onClick={handleClose}>Close</button>
         </div>
         {championList}
       </div>

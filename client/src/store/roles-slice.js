@@ -17,6 +17,13 @@ const rolesSlice = createSlice({
     addToRole(state, action) {
       state[action.payload.role].push(action.payload.champ);
     },
+    removeFromRole(state, action) {
+      state[action.payload.role] = [
+        ...state[action.payload.role].filter(
+          (champ) => champ.name !== action.payload.name
+        ),
+      ];
+    },
   },
 });
 
