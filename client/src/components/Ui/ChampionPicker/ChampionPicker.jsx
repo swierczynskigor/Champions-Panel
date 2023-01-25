@@ -34,12 +34,13 @@ const ChampionPicker = (props) => {
   };
 
   const handleClose = () => {
+    const obj = { role: props.role, list: role };
     fetch("http://localhost:5000/role/updateList", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ role: props.role, list: role }),
+      body: JSON.stringify(obj),
     });
 
     props.close();

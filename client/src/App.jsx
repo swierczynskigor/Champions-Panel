@@ -5,11 +5,10 @@ import MainPanel from "./components/Pages/MainPanel/MainPanel";
 import ChampionsPanel from "./components/Pages/ChampionsPanel/ChampionsPanel";
 import ItemsPanel from "./components/Pages/ItemsPanel/ItemsPanel";
 
-import { itemActions } from "./store/item-slice";
-import { championActions } from "./store/champion-slice";
 import { useDispatch } from "react-redux";
 import RolesPanel from "./components/Pages/RolesPanel/RolesPanel";
 import Role from "./components/Pages/RolesPanel/Role";
+import { rolesActions, itemActions, championActions } from "./store";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -40,9 +39,23 @@ export default function App() {
     dispatch(championActions.getChampions({ champions: [...res] }));
   }
 
+  async function getRoles() {
+    const response = await fetch(`http://localhost:5000/role/get`);
+
+    if (!response.ok) {
+      const message = `An error occurred: ${response.statusText}`;
+      window.alert(message);
+      return;
+    }
+
+    const res = await response.json();
+    dispatch(rolesActions.getRoles({ roles: [...res] }));
+  }
+
   useEffect(() => {
     getItems();
     getChampions();
+    getRoles();
   });
 
   return (

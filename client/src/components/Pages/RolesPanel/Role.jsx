@@ -5,7 +5,7 @@ import ChampionPicker from "../../Ui/ChampionPicker/ChampionPicker";
 import "./Role.css";
 
 export default function Role(props) {
-  const [showChampionPicker, setShowChampionPicker] = useState(true);
+  const [showChampionPicker, setShowChampionPicker] = useState(false);
 
   const changeChampionPanelVisibility = () =>
     showChampionPicker

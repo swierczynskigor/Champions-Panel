@@ -80,7 +80,6 @@ recordRoutes.route("/champions/get").get(function (req, res) {
 
 recordRoutes.route("/champions/update").post(function (req, response) {
   let db_connect = dbo.getDb();
-  console.log(req.body.builds.length);
   let myobj = {
     $set: {
       _id: ObjectId(req.body._id),
@@ -109,22 +108,39 @@ recordRoutes.route("/:id").delete((req, response) => {
   });
 });
 
+recordRoutes.route("/role/get").get(function (req, res) {
+  let db_connect = dbo.getDb(dbName);
+  db_connect
+    .collection("roles")
+    .find({})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+});
+
 recordRoutes.route("/role/updateList").post((req, res) => {
   let db_connect = dbo.getDb();
   let myobj = {
     $set: {
-      _id: ObjectId(req.body._id),
-      name: req.body.name,
-      image: req.body.name.replace(" ", "_") + "Square.webp",
-      builds: req.body.builds,
+      role: "top",
+      champions: req.body.list,
     },
   };
   db_connect
     .collection("roles")
-    .updateOne({ name: req.body.name }, myobj, function (err, res) {
+    .updateOne({ role: req.body.role }, myobj, function (err, res) {
       if (err) throw err;
       console.log("1 document updated");
     });
+  // .updateOne(
+  //   { _id: ObjectId("63d0573edabb82b959888094") },
+  //   myobj,
+  //   function (err, res) {
+  //     if (err) throw err;
+  //     console.log("1 document updated");
+  //   }
+  // );
 });
 
 module.exports = recordRoutes;

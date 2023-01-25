@@ -11,8 +11,11 @@ const rolesSlice = createSlice({
     duobot: [],
   },
   reducers: {
-    toggle(state) {
-      state.cartIsVisible = !state.cartIsVisible;
+    getRoles(state, action) {
+      action.payload.roles.forEach((role) => {
+        console.log(role);
+        state[role.role] = [...role.champions];
+      });
     },
     addToRole(state, action) {
       state[action.payload.role].push(action.payload.champ);

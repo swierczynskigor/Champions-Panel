@@ -67,19 +67,12 @@ export default function EditChampion(props) {
   };
 
   const handleAddBuild = (newBuild) => {
-    console.table(newBuild);
-    console.log(
-      builds[builds.length - 1].idx + 1,
-      builds[builds.length - 1].idx
-    );
     setBuilds([
       ...builds,
       { ...newBuild, idx: builds[builds.length - 1].idx + 1 },
     ]);
-    //setBuilds([...builds, newBuild])
   };
   const handleDelete = (idx) => {
-    console.log(idx);
     setBuilds([...builds].filter((build) => build.idx !== idx));
   };
 
