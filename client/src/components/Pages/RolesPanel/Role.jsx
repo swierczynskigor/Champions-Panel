@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Miniature from "../../Ui/Miniature";
 
 import "./Role.css";
+import { SelectBuilds } from "./SelectBuilds/SelectBuilds";
 
 export default function Role(props) {
   const [showChampionPicker, setShowChampionPicker] = useState(false);
@@ -14,6 +15,7 @@ export default function Role(props) {
 
   const [nameOfPickedChamp, setNameOfPickedChamp] = useState("");
   const [buildsToAssing, setBuildsToAssing] = useState([]);
+  const [assignedBuilds, setAssignedBuilds] = useState([]);
 
   const changeChampionPanelVisibility = () =>
     showChampionPicker
@@ -31,12 +33,16 @@ export default function Role(props) {
 
   const handleManageChampionBuild = (pickedChampion) => {
     changeBuildsPanelVisibility();
-    console.log(pickedChampion);
     const championsBuilds = champions.find(
       (champ) => champ.name === pickedChampion.name
     ).builds;
+    const selectedBuilds = championsInRole.find(
+      (champ) => champ.name === pickedChampion.name
+    ).builds;
+
     setNameOfPickedChamp(pickedChampion.name);
     setBuildsToAssing(championsBuilds);
+    setAssignedBuilds(selectedBuilds);
   };
 
   const championsList = championsInRole.map((champion) => {
@@ -60,7 +66,13 @@ export default function Role(props) {
             role={props.val}
           />
         ) : null}
-        {showSelectBuildsModal ? <></> : null}
+        {showSelectBuildsModal ? (
+          <SelectBuilds
+            champ={nameOfPickedChamp}
+            builds={buildsToAssing}
+            selectedBuilds={assignedBuilds}
+          />
+        ) : null}
         <div className="main-role">
           <nav>
             <Button styles={2} func={handlePickChampion}>
