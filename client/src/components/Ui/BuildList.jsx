@@ -5,7 +5,11 @@ import "./BuildList.css";
 export default function BuildList(props) {
   const handleDeleteBuild = (e, index) => {
     e.preventDefault();
-    props.handleDel(index);
+    props.action(index);
+  };
+
+  const handleSelectBuild = (e, index) => {
+    e.preventDefault();
   };
 
   const builds = props.builds.map((build) => {
@@ -16,7 +20,7 @@ export default function BuildList(props) {
         return (
           <div className="item-container" key={key}>
             <img
-              src={"./images/items/" + starter.image}
+              src={"../images/items/" + starter.image}
               alt={starter.image}
             ></img>
           </div>
@@ -28,7 +32,7 @@ export default function BuildList(props) {
       key++;
       return (
         <div className="item-container" key={key}>
-          <img src={"./images/items/" + bd.image} alt={bd.image}></img>
+          <img src={"../images/items/" + bd.image} alt={bd.image}></img>
         </div>
       );
     });
@@ -37,7 +41,7 @@ export default function BuildList(props) {
       key++;
       return (
         <div className="item-container" key={key}>
-          <img src={"./images/runes/" + rune.image} alt={rune.image}></img>
+          <img src={"../images/runes/" + rune.image} alt={rune.image}></img>
         </div>
       );
     });
@@ -45,7 +49,7 @@ export default function BuildList(props) {
       key++;
       return (
         <div className="item-container" key={key}>
-          <img src={"./images/runes/" + rune.image} alt={rune.image}></img>
+          <img src={"../images/runes/" + rune.image} alt={rune.image}></img>
         </div>
       );
     });
@@ -72,9 +76,15 @@ export default function BuildList(props) {
           <div>{mainRunes}</div>
           <div>{secondRunes}</div>
           <div className="btnEdit">
-            <button onClick={(e) => handleDeleteBuild(e, build.idx)}>
-              Select
-            </button>
+            {props.selectedBuilds.includes(build.idx) ? (
+              <button onClick={(e) => handleSelectBuild(e, build.idx)}>
+                Selected
+              </button>
+            ) : (
+              <button onClick={(e) => handleSelectBuild(e, build.idx)}>
+                Select
+              </button>
+            )}
           </div>
         </div>
       );

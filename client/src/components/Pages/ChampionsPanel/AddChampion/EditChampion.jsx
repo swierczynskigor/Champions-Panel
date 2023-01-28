@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import useInput from "../../../../hooks/use-input";
 
 import "./EditChampion.css";
-import BuildList from "./BuildList";
+import BuildList from "../../../Ui/BuildList";
 import NewBuild from "./NewBuild";
 
 import { useDispatch } from "react-redux";
@@ -96,7 +96,7 @@ export default function EditChampion(props) {
               <p className="error-text">Name must not be empty</p>
             )}
           </div>
-          <BuildList type="toEdit" builds={builds} handleDel={handleDelete} />
+          <BuildList type="toEdit" builds={builds} action={handleDelete} />
           <div className="buttons">
             <button type="button" onClick={() => setShowAddNewBuild(true)}>
               Add build

@@ -71,6 +71,7 @@ export default function Role(props) {
             champ={nameOfPickedChamp}
             builds={buildsToAssing}
             selectedBuilds={assignedBuilds}
+            close={changeBuildsPanelVisibility}
           />
         ) : null}
         <div className="main-role">

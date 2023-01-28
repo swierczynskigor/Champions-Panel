@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import useInput from "../../../../hooks/use-input";
 
 import "./AddChampionForm.css";
-import BuildList from "./BuildList";
+import BuildList from "../../../Ui/BuildList";
 import NewBuild from "./NewBuild";
 
 export default function AddChampionForm(props) {
