@@ -123,7 +123,7 @@ recordRoutes.route("/role/updateList").post((req, res) => {
   let db_connect = dbo.getDb();
   let myobj = {
     $set: {
-      role: "top",
+      role: req.body.role,
       champions: req.body.list,
     },
   };

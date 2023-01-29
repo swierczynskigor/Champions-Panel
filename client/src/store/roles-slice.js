@@ -27,6 +27,34 @@ const rolesSlice = createSlice({
         ),
       ];
     },
+    addBuildToChamp(state, action) {
+      const champToModify = state[action.payload.role].find(
+        (champ) => champ.name === action.payload.name
+      );
+      champToModify.builds.push(action.payload.indexOfBuild);
+      state[action.payload.role][
+        state[action.payload.role]
+          .map((champ) => champ.name)
+          .indexOf(action.payload.name)
+      ] = champToModify;
+    },
+    removeBuildFromChampion(state, action) {
+      const builds = [
+        ...state[action.payload.role].find(
+          (champ) => champ.name === action.payload.name
+        ).builds,
+      ];
+
+      state[action.payload.role][
+        state[action.payload.role]
+          .map((champ) => champ.name)
+          .indexOf(action.payload.name)
+      ].builds = [
+        ...builds.filter(
+          (buildIdx) => buildIdx !== action.payload.indexOfBuild
+        ),
+      ];
+    },
   },
 });
 

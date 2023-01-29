@@ -44,6 +44,7 @@ export default function Role(props) {
     setBuildsToAssing(championsBuilds);
     setAssignedBuilds(selectedBuilds);
   };
+  console.log(championsInRole);
 
   const championsList = championsInRole.map((champion) => {
     return (
@@ -68,6 +69,7 @@ export default function Role(props) {
         ) : null}
         {showSelectBuildsModal ? (
           <SelectBuilds
+            role={props.val}
             champ={nameOfPickedChamp}
             builds={buildsToAssing}
             selectedBuilds={assignedBuilds}

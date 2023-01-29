@@ -10,6 +10,7 @@ export default function BuildList(props) {
 
   const handleSelectBuild = (e, index) => {
     e.preventDefault();
+    props.action(index);
   };
 
   const builds = props.builds.map((build) => {
@@ -77,11 +78,17 @@ export default function BuildList(props) {
           <div>{secondRunes}</div>
           <div className="btnEdit">
             {props.selectedBuilds.includes(build.idx) ? (
-              <button onClick={(e) => handleSelectBuild(e, build.idx)}>
+              <button
+                className="y"
+                onClick={(e) => handleSelectBuild(e, build.idx)}
+              >
                 Selected
               </button>
             ) : (
-              <button onClick={(e) => handleSelectBuild(e, build.idx)}>
+              <button
+                className="n"
+                onClick={(e) => handleSelectBuild(e, build.idx)}
+              >
                 Select
               </button>
             )}

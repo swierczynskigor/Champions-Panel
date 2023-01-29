@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import RolesPanel from "./components/Pages/RolesPanel/RolesPanel";
 import Role from "./components/Pages/RolesPanel/Role";
 import { rolesActions, itemActions, championActions } from "./store";
+import DuobotRole from "./components/Pages/RolesPanel/DuobotRole/DuobotRole";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -77,7 +78,7 @@ export default function App() {
           <Route path="mid" element={<Role val="mid" />} />
           <Route path="bot" element={<Role val="bot" />} />
           <Route path="support" element={<Role val="supp" />} />
-          <Route path="duobot" element={<Role val="duobot" />} />
+          <Route path="duobot" element={<DuobotRole />} />
         </Route>
       </Routes>
     </BrowserRouter>
